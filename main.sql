@@ -37,3 +37,15 @@ CREATE TABLE "cities" (
   "name" TEXT NOT NULL UNIQUE,
   "stateId" INTEGER NOT NULL REFERENCES "states"("id")
 );
+
+-- CRIAR TABELA ADDRESSES
+
+CREATE TABLE "customerAddresses" (
+  "id" SERIAL PRIMARY KEY,
+  "customerId" INTEGER NOT NULL REFERENCES "customers"("id") UNIQUE,
+  "street" TEXT NOT NULL,
+  "number" VARCHAR(6) NOT NULL,
+  "complement" TEXT,
+  "postalCode" VARCHAR(8) NOT NULL,
+  "cityId" INTEGER NOT NULL REFERENCES "cities"("id")
+);
