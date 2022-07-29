@@ -22,3 +22,10 @@ CREATE TABLE "customerPhones" (
   "number" VARCHAR(11) NOT NULL,
   "type" phone NOT NULL
 );
+
+-- CRIAR TABELA DE STATES
+
+CREATE TABLE "states" (
+  "id" SERIAL PRIMARY KEY,
+  "name" TEXT NOT NULL UNIQUE
+);
