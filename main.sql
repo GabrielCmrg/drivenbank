@@ -49,3 +49,14 @@ CREATE TABLE "customerAddresses" (
   "postalCode" VARCHAR(8) NOT NULL,
   "cityId" INTEGER NOT NULL REFERENCES "cities"("id")
 );
+
+-- CRIAR TABELA BANK ACCOUNT
+
+CREATE TABLE "bankAccount" (
+  "id" SERIAL PRIMARY KEY,
+  "customerId" INTEGER NOT NULL REFERENCES "customers"("id"),
+  "accountNumber" VARCHAR(9) NOT NULL,
+  "agency" VARCHAR(4) NOT NULL,
+  "openDate" DATE NOT NULL DEFAULT NOW(),
+  "closeDate" DATE DEFAULT NULL
+);
