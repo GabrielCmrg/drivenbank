@@ -60,3 +60,17 @@ CREATE TABLE "bankAccount" (
   "openDate" DATE NOT NULL DEFAULT NOW(),
   "closeDate" DATE DEFAULT NULL
 );
+
+-- CRIAR TABELA TRANSACTIONS
+
+CREATE TYPE valid_transaction AS ENUM ('deposit', 'withdraw');
+
+CREATE TABLE "transactions" (
+  "id" SERIAL PRIMARY KEY,
+  "bankAccountId" INTEGER NOT NULL REFERENCES "bankAccount"("id"),
+  "amount" NUMERIC NOT NULL,
+  "type" valid_transaction NOT NULL,
+  "time" TIMESTAMP,
+  "description" TEXT,
+  "cancelled" BOOLEAN NOT NULL DEFAULT FALSE
+);
