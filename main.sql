@@ -74,3 +74,17 @@ CREATE TABLE "transactions" (
   "description" TEXT,
   "cancelled" BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+-- CRIAR TABELA CREDIT CARDS
+
+CREATE TABLE "creditCards" (
+  "id" SERIAL PRIMARY KEY,
+  "bankAccountId" INTEGER NOT NULL REFERENCES "bankAccount"("id"),
+  "name" TEXT NOT NULL,
+  "number" VARCHAR(16) NOT NULL UNIQUE,
+  "securityCode" VARCHAR(3) NOT NULL,
+  "expirationMonth" INTEGER NOT NULL CHECK("expirationMonth" > 0 AND "expirationMonth" <= 12),
+  "expirationYear" INTEGER NOT NULL CHECK("expirationYear" > date_part('year', NOW())),
+  "password" NUMERIC NOT NULL,
+  "limit" INTEGER NOT NULL CHECK("limit" > 0)
+);
